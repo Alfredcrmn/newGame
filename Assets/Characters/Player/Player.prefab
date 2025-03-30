@@ -131,8 +131,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 17
+  runSpeed: 27
   _isMoving: 0
   _isRunning: 0
+  _isFacingRight: 1
 --- !u!114 &7851278807436498984
 MonoBehaviour:
   m_ObjectHideFlags: 0
