@@ -11,24 +11,33 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     TouchingDirections touchingDirections;
 
-    public float CurrentMoveSpeed {
+    public float CurrentMoveSpeed { 
         get {
-            if (IsMoving && !touchingDirections.IsOnWall) {
-                if (touchingDirections.IsGrounded) {
-                    if (IsRunning) {
-                        return runSpeed;
-                    } else {
-                        return walkSpeed;
+            if(canMove) {
+                if (IsMoving && !touchingDirections.IsOnWall) {
+                    if (touchingDirections.IsGrounded) {
+                        if (IsRunning) {
+                            return runSpeed;
+                        }
+                        else {
+                            return walkSpeed;
+                        }
                     }
-                } else {
-                    // Air movement
-                    return airWalkSpeed;
+                    else {
+                        // Air Move
+                        return airWalkSpeed;
+                    }
                 }
-            } else {
-                // Idle or against wall
+                else {
+                    // Idle speed is 0
+                    return 0;
+                }
+            } 
+            else {
+                // Movement locked
                 return 0;
             }
-        }
+        } // Added this missing closing brace
     }
 
     [SerializeField]
@@ -71,6 +80,11 @@ public class PlayerController : MonoBehaviour
         }
 
         _isFacingRight = value;
+    }}
+
+    public bool canMove { get
+    {
+        return animator.GetBool(AnimationStrings.canMove);
     }}
 
     Rigidbody2D rb;
@@ -126,10 +140,18 @@ public class PlayerController : MonoBehaviour
 
     public void onJump(InputAction.CallbackContext context)
     {
+        if(context.started && touchingDirections.IsGrounded && canMove)
+        {
+            animator.SetTrigger(AnimationStrings.jumpTrigger);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpImpulse);
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
         if(context.started && touchingDirections.IsGrounded)
         {
-            animator.SetTrigger(AnimationStrings.jump);
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpImpulse);
+            animator.SetTrigger(AnimationStrings.attackTrigger);
         }
     }
     
