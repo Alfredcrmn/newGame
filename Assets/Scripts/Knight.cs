@@ -12,7 +12,7 @@ public class Knight : MonoBehaviour
 {
 
     public float walkSpeed = 8f;
-    public float walkStopRate = 3f;
+    public float walkStopRate = 0.05f;
     public DetectionZone attackZone;
 
 
