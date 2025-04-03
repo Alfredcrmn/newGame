@@ -1,14 +1,25 @@
-using UnityEngine;
+using Unity.VisualScripting;
 using UnityEngine.InputSystem.LowLevel;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
+
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 public class Knight : MonoBehaviour
 {
 
     public float walkSpeed = 8f;
+    public float walkStopRate = 3f;
+    public DetectionZone attackZone;
+
 
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
+    Animator animator;
+
 
     public enum WalkableDirection { Right, Left};
     private WalkableDirection _walkDirection;
@@ -36,43 +47,66 @@ public class Knight : MonoBehaviour
             _walkDirection = value; }
     }
 
+    public bool _hasTarget = false;
+
+    public bool HasTarget {
+        get { return _hasTarget; }
+    private set
+    {
+        _hasTarget = value;
+        animator.SetBool(AnimationStrings.hasTarget, value);
+    }
+    }
+
+    public bool CanMove
+    {
+        get
+        {
+            return animator.GetBool(AnimationStrings.canMove);
+        }
+
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<TouchingDirections>();
-    }
-        private void FixedUpdate()
-        {
-            if(touchingDirections.IsGrounded && touchingDirections.IsOnWall)
-            {
-                FlipDirection();
-            }
-            rb.linearVelocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.linearVelocity.y);
-        }
-
-        private void FlipDirection()
-        {
-            if(WalkDirection == WalkableDirection.Right)
-            {
-                WalkDirection = WalkableDirection.Left;
-            } else if (WalkDirection == WalkableDirection.Left)
-            {
-                WalkDirection = WalkableDirection.Right;
-            } else
-            {
-                Debug.LogError("Current walkable direction is not set to legal values of right or left");
-            }
-        }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+        // Update is called once per frame
     void Update()
     {
-        
+        HasTarget = attackZone.detectedColliders.Count > 0;
+    } 
+
+    
+    private void FixedUpdate()
+    {
+        if(touchingDirections.IsGrounded && touchingDirections.IsOnWall)
+        {
+            FlipDirection();
+        }
+        if(CanMove)
+            rb.linearVelocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.linearVelocity.y);
+        else
+            rb.linearVelocity = new Vector2(Mathf.Lerp(rb.linearVelocity.x, 0, walkStopRate), rb.linearVelocity.y);
     }
+
+    private void FlipDirection()
+    {
+        if(WalkDirection == WalkableDirection.Right)
+        {
+            WalkDirection = WalkableDirection.Left;
+        } else if (WalkDirection == WalkableDirection.Left)
+        {
+            WalkDirection = WalkableDirection.Right;
+        } else
+        {
+            Debug.LogError("Current walkable direction is not set to legal values of right or left");
+        }
+    }
+
+
 }
 
