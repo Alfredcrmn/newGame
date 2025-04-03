@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 
@@ -6,9 +7,11 @@ public class Knight : MonoBehaviour
 {
 
     public float walkSpeed = 8f;
+    public DetectionZone attackZone;
 
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
+    Animator animator;
 
     public enum WalkableDirection { Right, Left};
     private WalkableDirection _walkDirection;
@@ -36,10 +39,35 @@ public class Knight : MonoBehaviour
             _walkDirection = value; }
     }
 
+    public bool _hasTarget = false;
+    public bool HasTarget {
+        get {return _hasTarget; }
+        private set
+        {
+            _hasTarget = value;
+            animator.SetBool(AnimationStrings.hasTarget, value);
+        }
+    }
+
+    public bool CanMove
+    {
+        get
+        {
+        return animator.GetBool(AnimationStrings.canMove);
+        }
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<TouchingDirections>();
+        animator = GetComponent<Animator>();
+    }
+
+        // Update is called once per frame
+    void Update()
+    {
+        HasTarget = attackZone.detectedColliders.Count > 0;
     }
         private void FixedUpdate()
         {
@@ -47,7 +75,16 @@ public class Knight : MonoBehaviour
             {
                 FlipDirection();
             }
-            rb.linearVelocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.linearVelocity.y);
+
+            if(CanMove)
+            {
+                rb.linearVelocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.linearVelocity.y);
+            }
+            else
+            {
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            }
+
         }
 
         private void FlipDirection()
@@ -63,16 +100,6 @@ public class Knight : MonoBehaviour
                 Debug.LogError("Current walkable direction is not set to legal values of right or left");
             }
         }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
 
