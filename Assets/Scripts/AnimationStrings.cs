@@ -15,4 +15,5 @@ internal class AnimationStrings
     internal const string isOnCeiling = "isOnCeiling";
     internal const string attackTrigger = "attack";
     internal const string canMove = "canMove";
+    internal const string hasTarget = "hasTarget";
 }
