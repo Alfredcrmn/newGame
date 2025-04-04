@@ -5,6 +5,7 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public int attackDamage = 20;
+    public Vector2 knockback = Vector2.zero;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,9 +14,10 @@ public class Attack : MonoBehaviour
 
         if(damageable != null)
         {
-            //Hit the target
-            damageable.Hit(attackDamage);
-            Debug.Log(collision.name + "hit for" + attackDamage);
+            bool gotHit = damageable.Hit(attackDamage, knockback);
+            
+            if(gotHit)
+                Debug.Log(collision.name + "hit for" + attackDamage); //brackets missing... lol
         }
     }
 }
