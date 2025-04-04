@@ -20883,6 +20883,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4379593263934723743, guid: 4e79d94f6adb148aba9d3be5623edd2b, type: 3}
+      propertyPath: _maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8773922014558486713, guid: 4e79d94f6adb148aba9d3be5623edd2b, type: 3}
       propertyPath: m_GravityScale
       value: 1

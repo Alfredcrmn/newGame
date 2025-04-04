@@ -118,9 +118,6 @@ public class PlayerController : MonoBehaviour
     {
         if(!LockVelocity)
         {
-
-        }
-        {
             rb.linearVelocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.linearVelocity.y);
         }
 
