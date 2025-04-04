@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a31c8e5d054a4e345b055be4670b6802, type: 3}
+  m_Name: New Faction Database
+  m_EditorClassIdentifier: 
+  faction:
+  - FactionName: Earthbound Coalition
+    FactionSprite: {fileID: 7022714750010662584, guid: b0a2c926b6fa66b45a306f064e6ada45, type: 3}
+  - FactionName: Lumina Project
+    FactionSprite: {fileID: 7022714750010662584, guid: d0f88e7082fb6b9429a1c5980aaea1b0, type: 3}
+  - FactionName: Prometheus Consortium
+    FactionSprite: {fileID: 7022714750010662584, guid: b8b8d07d830fddd47ad0c52eb9fffafc, type: 3}
