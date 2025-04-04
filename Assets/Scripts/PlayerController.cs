@@ -85,7 +85,16 @@ public class PlayerController : MonoBehaviour
     public bool canMove { get
     {
         return animator.GetBool(AnimationStrings.canMove);
-    }}
+    }
+    }
+
+    public bool IsAlive
+    {
+        get
+        {
+        return animator.GetBool(AnimationStrings.isAlive);
+        }
+    }
 
     Rigidbody2D rb;
     Animator animator;
@@ -107,6 +116,17 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+
+        if(IsAlive)
+        {
+            IsMoving = moveInput != Vector2.zero;
+
+            setFacingDirection(moveInput);
+        }
+        else
+        {
+            IsMoving = false;
+        }
 
         IsMoving = moveInput != Vector2.zero;
 
