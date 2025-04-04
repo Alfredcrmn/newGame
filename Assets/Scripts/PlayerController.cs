@@ -125,7 +125,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            IsMoving = false;
+            IsMoving = false; 
+            moveInput = Vector2.zero; //Added this line to stop movement completely when dead
         }
 
         IsMoving = moveInput != Vector2.zero;
@@ -135,6 +136,8 @@ public class PlayerController : MonoBehaviour
 
     private void setFacingDirection(Vector2 moveInput)
     {
+        if(!IsAlive) return; //Added this line so it checks if the player is alive before setting the direction
+
         if(moveInput.x > 0 && !IsFacingRight)
         {
             //Face the right
