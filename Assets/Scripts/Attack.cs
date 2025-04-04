@@ -1,11 +1,12 @@
-using System.Numerics;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
 
     public int attackDamage = 10;
-    public UnityEngine.Vector2 knockback = UnityEngine.Vector2.zero;
+    public Vector2 knockback = Vector2.zero;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,7 +16,7 @@ public class Attack : MonoBehaviour
         if(damageable != null)
         {
 
-            UnityEngine.Vector2 deliveredKnockback = transform.parent.localScale.x > 0 ? knockback : new UnityEngine.Vector2(-knockback.x, knockback.y);
+            Vector2 deliveredKnockback = transform.parent.localScale.x > 0 ? knockback : new Vector2(-knockback.x, knockback.y);
             bool gotHit = damageable.Hit(attackDamage, knockback);
 
             if(gotHit)

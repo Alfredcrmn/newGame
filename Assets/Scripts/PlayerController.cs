@@ -111,10 +111,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!damageable.LockVelocity)
-        {  
+        if(!damageable.LockVelocity) 
             rb.linearVelocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.linearVelocity.y);
-        }
+        
         animator.SetFloat(AnimationStrings.yVelocity, rb.linearVelocity.y);
     } 
 

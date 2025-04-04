@@ -338,6 +338,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
   followTarget: {fileID: 1686505248}
+--- !u!114 &393848894 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1337133000852436423, guid: 7e2ab3ad24bb4493f90d759c4d09eff7, type: 3}
+  m_PrefabInstance: {fileID: 8082154346636314935}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab5bb5717ae044008e9361a46c55f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -20883,6 +20894,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4379593263934723743, guid: 4e79d94f6adb148aba9d3be5623edd2b, type: 3}
+      propertyPath: _health
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8773922014558486713, guid: 4e79d94f6adb148aba9d3be5623edd2b, type: 3}
       propertyPath: m_GravityScale
       value: 1
@@ -20943,6 +20958,34 @@ PrefabInstance:
     - target: {fileID: 3037723606612834117, guid: 7e2ab3ad24bb4493f90d759c4d09eff7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319821827265732604, guid: 7e2ab3ad24bb4493f90d759c4d09eff7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6204846806162263616, guid: 7e2ab3ad24bb4493f90d759c4d09eff7, type: 3}
+      propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6204846806162263616, guid: 7e2ab3ad24bb4493f90d759c4d09eff7, type: 3}
+      propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 393848894}
+    - target: {fileID: 6204846806162263616, guid: 7e2ab3ad24bb4493f90d759c4d09eff7, type: 3}
+      propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6204846806162263616, guid: 7e2ab3ad24bb4493f90d759c4d09eff7, type: 3}
+      propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6204846806162263616, guid: 7e2ab3ad24bb4493f90d759c4d09eff7, type: 3}
+      propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Knight, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6204846806162263616, guid: 7e2ab3ad24bb4493f90d759c4d09eff7, type: 3}
+      propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,6 +1,9 @@
 using NUnit.Framework;
-using UnityEngine;
 using UnityEngine.Events;
+using System.Collections.Generic;
+using System.Collections;
+using UnityEngine;
+
 
 public class Damageable : MonoBehaviour
 {
@@ -68,13 +71,16 @@ public class Damageable : MonoBehaviour
 
     //The velocity should not be changed while this is true but needs to be respected by other physics componenents
     //like the player controller
-    public bool LockVelocity { get {
-        return animator.GetBool(AnimationStrings.lockVelocity);
-    }
-    set
+    public bool LockVelocity
     {
-        animator.SetBool(AnimationStrings.lockVelocity, value);
-    }
+        get
+        {
+            return animator.GetBool(AnimationStrings.lockVelocity);
+        }
+        set
+        {
+            animator.SetBool(AnimationStrings.lockVelocity, value);
+        }
     }
 
     private void Awake()

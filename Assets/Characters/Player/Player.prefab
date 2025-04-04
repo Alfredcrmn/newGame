@@ -470,7 +470,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   groundDistance: 0.05
   wallDistance: 0.2
-  ceilingDistance: 0.05
+  ceilingDistance: 1
   _isGrounded: 0
   _isOnWall: 1
   _isOnCeiling: 1
@@ -505,4 +505,4 @@ MonoBehaviour:
   _health: 50
   _isAlive: 1
   isInvincible: 0
-  invincibilityTime: 1
+  invincibilityTime: 0.25

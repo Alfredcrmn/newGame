@@ -93,9 +93,13 @@ public class Knight : MonoBehaviour
         if(!damageable.LockVelocity)
         {
             if(CanMove)
+            {
                 rb.linearVelocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.linearVelocity.y);
+            }
             else
+            {
                 rb.linearVelocity = new Vector2(Mathf.Lerp(rb.linearVelocity.x, 0, walkStopRate), rb.linearVelocity.y);
+            }
         }
     }
 
