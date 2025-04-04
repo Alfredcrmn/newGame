@@ -1,5 +1,6 @@
 using UnityEngine;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,8 @@ public class GameOver : MonoBehaviour
         // Reload the current scene to restart the game
         SceneManager.LoadScene("Faction selection");
 =======
+=======
+>>>>>>> Stashed changes
 
 public class GameOver : MonoBehaviour
 {
@@ -24,6 +27,9 @@ public class GameOver : MonoBehaviour
     void Update()
     {
         
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 }
