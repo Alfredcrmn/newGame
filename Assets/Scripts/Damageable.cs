@@ -1,7 +1,11 @@
+using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
+
+    public UnityEvent<int, Vector2> damageableHit;
 
     Animator animator;
 
@@ -18,13 +22,7 @@ public class Damageable : MonoBehaviour
         set
         {
             _maxHealth = value;
-
-            if(Health < 0)
-            {
-                IsAlive = false;
-            }
         }
-        
     }
 
     [SerializeField]
@@ -39,6 +37,11 @@ public class Damageable : MonoBehaviour
         set
         {
             _health = value;
+
+            if(_health <= 0)
+            {
+                IsAlive = false;
+            }
         }
     }
 
@@ -46,6 +49,7 @@ public class Damageable : MonoBehaviour
     private bool _isAlive = true;
     [SerializeField]
     private bool isInvincible = false;
+
     private float timeSinceHit = 0;
     public float invincibilityTime = 0.25f;
 
@@ -58,9 +62,20 @@ public class Damageable : MonoBehaviour
         {
             _isAlive = value;
             animator.SetBool(AnimationStrings.isAlive, value);
+            Debug.Log("IsAlive set" + value);
         }
     }
 
+    //The velocity should not be changed while this is true but needs to be respected by other physics componenents
+    //like the player controller
+    public bool LockVelocity { get {
+        return animator.GetBool(AnimationStrings.lockVelocity);
+    }
+    set
+    {
+        animator.SetBool(AnimationStrings.lockVelocity, value);
+    }
+    }
 
     private void Awake()
     {
@@ -82,12 +97,22 @@ public class Damageable : MonoBehaviour
         }
     }
 
-    public void Hit(int damage)
+    //Returns whether the damageable took damage or not
+    public bool Hit(int damage, Vector2 knockback)
     {
         if(IsAlive && !isInvincible)
         {
            Health -= damage;
            isInvincible = true;
+
+           //Modify other suscribed components that the damageable was hit to handle the knockbak and such
+           animator.SetTrigger(AnimationStrings.hitTrigger);
+           LockVelocity = true;
+           damageableHit?.Invoke(damage, knockback);
+
+           return true;
         }
+
+        return false;
     }
 }
