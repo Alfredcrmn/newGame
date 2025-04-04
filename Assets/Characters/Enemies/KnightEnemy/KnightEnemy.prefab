@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 1337133000852436423}
   - component: {fileID: 9004880198309128765}
   - component: {fileID: 1146999955112056612}
+  - component: {fileID: 6204846806162263616}
   m_Layer: 8
   m_Name: KnightEnemy
   m_TagString: Untagged
@@ -319,3 +320,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6204846806162263616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2885592723297485375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0a7afd6cafc4a2cacbab0a2bd47088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
