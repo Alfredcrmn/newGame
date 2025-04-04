@@ -80,7 +80,7 @@ public class Knight : MonoBehaviour
     void Update()
     {
         HasTarget = attackZone.detectedColliders.Count > 0;
-    } 
+    }
 
     
     private void FixedUpdate()

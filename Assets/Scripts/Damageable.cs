@@ -95,6 +95,7 @@ public class Damageable : MonoBehaviour
             {
                 //Remove invincibility
                 isInvincible = false;
+                LockVelocity = false;
                 timeSinceHit = 0;
             }
 
