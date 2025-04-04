@@ -18,4 +18,6 @@ internal class AnimationStrings
     internal const string hasTarget = "hasTarget";
     internal const string isAlive = "isAlive";
     internal const string isHit = "isHit";
+    internal const string hitTrigger = "hit";
+    internal const string lockVelocity = "lockVelocity";
 }
