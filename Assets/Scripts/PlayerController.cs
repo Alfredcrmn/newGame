@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 17f;
@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float jumpImpulse = 10f;
     Vector2 moveInput;
     TouchingDirections touchingDirections;
+    Damageable damageable;
 
     public float CurrentMoveSpeed { 
         get {
@@ -96,13 +97,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public bool LockVelocity {
-        get
-        {
-            return animator.GetBool(AnimationStrings.lockVelocity);
-        }
-    }
-
     Rigidbody2D rb;
     Animator animator;
 
@@ -111,11 +105,12 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
+        damageable = GetComponent<Damageable>();
     }
 
     private void FixedUpdate()
     {
-        if(!LockVelocity)
+        if(!damageable.LockVelocity)
             rb.linearVelocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.linearVelocity.y); //Missing brackets again xd
 
         animator.SetFloat(AnimationStrings.yVelocity, rb.linearVelocity.y);

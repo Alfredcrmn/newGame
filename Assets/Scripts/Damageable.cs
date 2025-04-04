@@ -72,6 +72,19 @@ public class Damageable : MonoBehaviour
         }
     }
 
+    //The velocity should not be changed while this is true but needs to be respected by other physics
+    //components like the player controller
+    public bool LockVelocity {
+    get
+    {
+        return animator.GetBool(AnimationStrings.lockVelocity);
+    }
+    set
+    {
+        animator.SetBool(AnimationStrings.lockVelocity, value);
+    }
+}
+
 
     private void Awake()
     {
@@ -95,6 +108,8 @@ public class Damageable : MonoBehaviour
 
     public float recoveryTime = 0.4f; //Do not touch this
     //Returns whether the damageable took damage or not
+
+    // *****************************************************
     public bool Hit(int damage, Vector2 knockback)
     {
         if(IsAlive && !isInvincible)
@@ -106,6 +121,7 @@ public class Damageable : MonoBehaviour
            animator.SetBool(AnimationStrings.lockVelocity, true); //Do not touch this
 
            animator.SetTrigger(AnimationStrings.hitTrigger);
+           LockVelocity = true;
            damageableHit?.Invoke(damage, knockback);
 
            StartCoroutine(RecoverFromHit()); //Do not touch this
@@ -116,6 +132,7 @@ public class Damageable : MonoBehaviour
         //Unable to be hit
         return false;
     }
+    // *****************************************************
 
     private IEnumerator RecoverFromHit() //Do not touch me
     {
