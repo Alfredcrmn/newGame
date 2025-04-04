@@ -142,6 +142,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 1
     m_Controller: {fileID: 9100000}
+  - m_Name: isHit
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -265,7 +271,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: hasTarget
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -306,12 +315,12 @@ AnimatorStateMachine:
   - {fileID: 8852958160799331363}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 6956966135543891585}
-    second:
-    - {fileID: -5489767442728397445}
   - first: {fileID: -862836406438218311}
     second:
     - {fileID: -4641022466439597757}
+  - first: {fileID: 6956966135543891585}
+    second:
+    - {fileID: -5489767442728397445}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 590, y: 200, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}

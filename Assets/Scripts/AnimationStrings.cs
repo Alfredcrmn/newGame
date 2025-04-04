@@ -16,5 +16,6 @@ internal class AnimationStrings
     internal const string attackTrigger = "attack";
     internal const string canMove = "canMove";
     internal const string hasTarget = "hasTarget";
-    internal const string isAlive = "IsAlive";
+    internal const string isAlive = "isAlive";
+    internal const string isHit = "isHit";
 }
