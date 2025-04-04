@@ -92,6 +92,8 @@ public class Damageable : MonoBehaviour
             timeSinceHit += Time.deltaTime;
         }
     }
+
+    public float recoveryTime = 0.4f; //Do not touch this
     //Returns whether the damageable took damage or not
     public bool Hit(int damage, Vector2 knockback)
     {
@@ -100,13 +102,29 @@ public class Damageable : MonoBehaviour
            Health -= damage;
            isInvincible = true;
 
+           animator.SetBool(AnimationStrings.canMove, false); //Do not touch this
+           animator.SetBool(AnimationStrings.lockVelocity, true); //Do not touch this
+
            animator.SetTrigger(AnimationStrings.hitTrigger);
            damageableHit?.Invoke(damage, knockback);
+
+           StartCoroutine(RecoverFromHit()); //Do not touch this
 
            return true;
         }
         
         //Unable to be hit
         return false;
+    }
+
+    private IEnumerator RecoverFromHit() //Do not touch me
+    {
+        yield return new WaitForSeconds(recoveryTime); //Do not touch this
+
+        if(IsAlive) //Do not touch this
+        {
+            animator.SetBool(AnimationStrings.canMove, true); //Do not touch this
+            animator.SetBool(AnimationStrings.lockVelocity, false); //Do not touch this
+        }
     }
 }
