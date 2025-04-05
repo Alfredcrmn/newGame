@@ -1,15 +1,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class PlayerController : MonoBehaviour
 {
+
+    public static PlayerController Instance { get; private set; }
+
     public float walkSpeed = 17f;
     public float runSpeed = 27f;
     public float airWalkSpeed = 12f;
     public float jumpImpulse = 10f;
     Vector2 moveInput;
     TouchingDirections touchingDirections;
+    Damageable damageable;
 
     public float CurrentMoveSpeed { 
         get {
@@ -101,14 +105,27 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+
+        if( Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
+        damageable = GetComponent<Damageable>();
     }
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.linearVelocity.y);
+        if(!damageable.LockVelocity)
+            rb.linearVelocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.linearVelocity.y); //Missing brackets again xd
 
         animator.SetFloat(AnimationStrings.yVelocity, rb.linearVelocity.y);
     } 
@@ -125,7 +142,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            IsMoving = false;
+            IsMoving = false; 
+            moveInput = Vector2.zero; //Added this line to stop movement completely when dead
         }
 
         IsMoving = moveInput != Vector2.zero;
@@ -135,6 +153,8 @@ public class PlayerController : MonoBehaviour
 
     private void setFacingDirection(Vector2 moveInput)
     {
+        if(!IsAlive) return; //Added this line so it checks if the player is alive before setting the direction
+
         if(moveInput.x > 0 && !IsFacingRight)
         {
             //Face the right
@@ -173,6 +193,11 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger(AnimationStrings.attackTrigger);
         }
+    }
+
+    public void OnHit(int damage, Vector2 knockback)
+    {
+         rb.linearVelocity = new Vector2(knockback.x, rb.linearVelocity.y + knockback.y);
     }
     
 }

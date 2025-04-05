@@ -27,7 +27,8 @@ public class SetBoolBehaviour : StateMachineBehaviour
     {
         if(updateOnState)
         {
-           animator.SetBool(boolName, valueOnExit); 
+           animator.SetBool(boolName, valueOnExit);
+           Debug.Log("SetBoolBehaviour: " + boolName + " set to " + valueOnExit); 
         }  
     }
 
