@@ -119,9 +119,8 @@ public class Damageable : MonoBehaviour
 
            animator.SetBool(AnimationStrings.canMove, false); //Do not touch this
            animator.SetBool(AnimationStrings.lockVelocity, true); //Do not touch this
-
+           Debug.Log("Hit: " + gameObject.name + " for " + damage + " damage. Health: " + Health);
            animator.SetTrigger(AnimationStrings.hitTrigger);
-           LockVelocity = true;
            damageableHit?.Invoke(damage, knockback);
 
            StartCoroutine(RecoverFromHit()); //Do not touch this
@@ -140,6 +139,9 @@ public class Damageable : MonoBehaviour
 
         if(IsAlive) //Do not touch this
         {
+            print(
+                "Recovering from hit: " + gameObject.name + " for " + Health + " health. IsAlive: " + IsAlive
+            );
             animator.SetBool(AnimationStrings.canMove, true); //Do not touch this
             animator.SetBool(AnimationStrings.lockVelocity, false); //Do not touch this
         }

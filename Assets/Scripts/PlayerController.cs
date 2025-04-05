@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class PlayerController : MonoBehaviour
 {
+
+    public static PlayerController Instance { get; private set; }
+
     public float walkSpeed = 17f;
     public float runSpeed = 27f;
     public float airWalkSpeed = 12f;
@@ -102,6 +105,17 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+
+        if( Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
