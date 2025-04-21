@@ -78,10 +78,7 @@ AnimatorTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: hasTarget
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 6956966135543891585}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -113,13 +110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2731fa257dd24a86972fd56d4c9e1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatName: 
+  floatName: attackCooldown
   updateOnStateEnter: 0
-  updateOnStateExit: 0
+  updateOnStateExit: 1
   updateOnStateMachineEnter: 0
   updateOnStateMachineExit: 0
   valueOnEnter: 0
-  valueOnExit: 0
+  valueOnExit: 1
 --- !u!1107 &-862836406438218311
 AnimatorStateMachine:
   serializedVersion: 6
@@ -275,6 +272,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: hasTarget
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: attackCooldown
+    m_EventTreshold: 0.00001
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -330,10 +330,7 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: hasTarget
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
   m_Solo: 0
