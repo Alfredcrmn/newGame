@@ -70,9 +70,9 @@ public class Knight : MonoBehaviour
     }
 
     public float AttackCooldown {get {
-        return animator.GetFloat(AnimationStrings.AttackCooldown);
+        return animator.GetFloat(AnimationStrings.attackCooldown);
     } private set {
-        animator.SetFloat(AnimationStrings.AttackCooldown, Mathf.Max(value, 0));
+        animator.SetFloat(AnimationStrings.attackCooldown, Mathf.Max(value, 0));
     }}
 
     private void Awake()

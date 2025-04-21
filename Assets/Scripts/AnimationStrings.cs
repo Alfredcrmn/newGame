@@ -20,5 +20,5 @@ internal class AnimationStrings //If not working, switch const for static... yea
     internal const string isHit = "isHit";
     internal const string hitTrigger = "hit";
     internal const string lockVelocity = "lockVelocity";
-    internal const string AttackCooldown = "attackCooldown";
+    internal const string attackCooldown = "attackCooldown";
 }
