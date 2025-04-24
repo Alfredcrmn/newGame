@@ -122,6 +122,7 @@ public class Damageable : MonoBehaviour
            Debug.Log("Hit: " + gameObject.name + " for " + damage + " damage. Health: " + Health);
            animator.SetTrigger(AnimationStrings.hitTrigger);
            damageableHit?.Invoke(damage, knockback);
+           CharacterEvents.characterDamaged.Invoke(gameObject, damage);
 
            StartCoroutine(RecoverFromHit()); //Do not touch this
 
