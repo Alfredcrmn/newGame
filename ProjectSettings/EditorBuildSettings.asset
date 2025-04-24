@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 88aac7796704ac94fa0b213dfd128001
+  - enabled: 1
     path: Assets/Scenes/Faction selection.unity
     guid: 5f15cba5356d4f148a7ec9db78d077b2
   - enabled: 1
