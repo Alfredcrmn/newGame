@@ -309,7 +309,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 971357934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcb2e00ce0e20624aa60277741ba2f2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 46b6d4733e6530042990e8990f64e08c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1093765908
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Game Over
+  m_text: 'You Win?
 
     Play Again?'
   m_isRightToLeft: 0
@@ -612,7 +612,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 971357938}
-        m_TargetAssemblyTypeName: Gameoverscreen, Assembly-CSharp
+        m_TargetAssemblyTypeName: YouWinScreen, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
@@ -836,7 +836,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 971357938}
-        m_TargetAssemblyTypeName: Gameoverscreen, Assembly-CSharp
+        m_TargetAssemblyTypeName: YouWinScreen, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:

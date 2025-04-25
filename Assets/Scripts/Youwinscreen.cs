@@ -9,7 +9,7 @@ public class YouWinScreen : MonoBehaviour
     public void RestartGame()
     {
         // Load the scene with the name "MainMenu"
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Faction selection");
     }
     public void QuitGame()
     {
