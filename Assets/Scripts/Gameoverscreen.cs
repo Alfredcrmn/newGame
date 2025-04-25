@@ -6,7 +6,12 @@ using System.Collections;
 
 public class Gameoverscreen : MonoBehaviour
 {
+<<<<<<< Updated upstream
 // Start is called once before the first execution of Update after the MonoBehaviour is created
+=======
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+>>>>>>> Stashed changes
     public void RestartGame()
     {
         // Load the scene with the name "MainMenu"
